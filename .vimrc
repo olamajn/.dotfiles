@@ -282,7 +282,3 @@ let g:user_emmet_leader_key=','
 " }}}
 " LaTex is tex filetype
 let g:tex_flavor = "latex"
-
-" Skjer det noe?
-" Skjer ingenting
-" Enn nå da?
