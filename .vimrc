@@ -15,6 +15,9 @@ set number
 " This is also set in /usr/share/vim/vim82/ftplugin/vim.vim to "fo=croql"
 " so it has to be set in .vim/after/ftplugin/vim.vim
 set formatoptions=cql
+
+" Highlight search incrementally
+set hlsearch incsearch
 "}}}
 
 " Leader key{{{
@@ -24,6 +27,7 @@ let mapleader = ","
 
 " Localleader
 let maplocalleader = "\\"
+
 
 "}}}
 
@@ -59,7 +63,7 @@ nnoremap <leader>sb :source %<cr>
 nnoremap H 0
 
 " End of line
-nnoremap L $
+nnoremap L <end>
 
 " Toggle fold
 nnoremap <space> za
@@ -83,6 +87,30 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
+" Double delete, single undo
+nnoremap <leader>d ddi<c-g>u<esc>dd
+
+" Very magic search
+nnoremap <leader>7 /\v
+
+" Clear search highlight
+nnoremap <leader>/ :nohlsearch<cr>
+
+" Trailing whitespace
+nnoremap <leader>w :match Error /\v $/<cr>
+nnoremap <leader>W :match none<cr>
+
+" Grep search 
+" nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+
+" Next result
+nnoremap <s-j> :cnext<cr>
+
+" Previous result
+nnoremap <s-k> :cprevious<cr>
+
+" Close cwindow
+nnoremap <leader>cc :cclose<cr>
 "}}}
 
 " Insert Mode{{{
@@ -270,7 +298,7 @@ nnoremap <leader>n :NERDTree<CR>
 	" autocmd VimEnter * NERDTree
 " }}}
 "YouCompleteMe{{{2
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>gtd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "}}}
 " VimTex ------------------ {{{2
 "
