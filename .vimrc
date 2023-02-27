@@ -75,11 +75,23 @@ nnoremap < >>
 " Write
 nnoremap ww :write<cr>
 
-" Window mappings
-nnoremap <C-J> <C-W><C-J>
+" Window below
+nnoremap <c-j> <c-w><c-j>
+
+" Window above
 nnoremap <C-K> <C-W><C-K>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-L> <C-W><C-L>
+
+" Window left
+nnoremap <c-h> <c-w><c-h>
+
+" Window right
+nnoremap <c-l> <c-w><c-l>
+
+" Close window
+nnoremap <c-q> <c-w>q
+
+" Only window
+nnoremap <c-o> <c-w>o
 
 " Disable arrowkeys
 nnoremap <up> <nop>
@@ -91,10 +103,10 @@ nnoremap <right> <nop>
 nnoremap <leader>d ddi<c-g>u<esc>dd
 
 " Very magic search
-nnoremap <leader>7 /\v
+nnoremap 7 /\v
 
 " Clear search highlight
-nnoremap <leader>/ :nohlsearch<cr>
+nnoremap <s-7> :nohlsearch<cr>
 
 " Trailing whitespace
 nnoremap <leader>w :match Error /\v $/<cr>
@@ -111,6 +123,11 @@ nnoremap <s-k> :cprevious<cr>
 
 " Close cwindow
 nnoremap <leader>cc :cclose<cr>
+
+" Movement same for wrap/lines
+nnoremap j gj
+nnoremap k gk
+
 "}}}
 
 " Insert Mode{{{
@@ -137,7 +154,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-
 "}}}
 
 " Visual Mode{{{
@@ -154,6 +170,10 @@ vnoremap L $
 
 " Beginning of line
 vnoremap H 0
+
+" Indentaion: simpler and reversed
+vnoremap > < 
+vnoremap < >
 
 "}}}
 
@@ -188,6 +208,12 @@ onoremap in@ :<c-u>execute "normal! /[0-z-._]\\+@\\w\\+.\\w\\+\r:nohlsearch\rvt@
 
 " Previous email address
 onoremap il@ :<c-u>execute "normal! ?[0-z-._]\\+@\\w\\+.\\w\\+\r:nohlsearch\rvt@"<cr>
+
+" End of line
+onoremap L $
+
+" Beginning of line
+onoremap H 0
 
 "}}}
 "}}}
@@ -287,12 +313,18 @@ let g:UltiSnipsExpandTrigger = '<tab>' " use Tab to expand snippets
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'    " use Tab to move forward through tabstops
 let g:UltiSnipsJumpBackwardTrigger = '<S-tab>'  " use Shift-Tab to move backward through tabstops
 let g:UltiSnipsSnippetDirectories=[$HOME.'vim/UltiSnips', 'UltiSnips']
-" Use <leader>u in normal mode to refresh UltiSnips snippets
-nnoremap <leader><leader> <Cmd>call UltiSnips#RefreshSnippets()<CR>
-  " Change folder when opening file
+
+" Edit snippets in new window
+let g:UltiSnipsEditSplit="vertical"
+
+" Refresh snippets 
+nnoremap <leader>su <Cmd>call UltiSnips#RefreshSnippets()<CR>
+
+" Edit snippets
+nnoremap <leader>eu :UltiSnipsEdit<cr>
 " }}}
 " NERDTree --------------------- {{{2
-nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 " augroup NERDTree
 	" au!
 	" autocmd VimEnter * NERDTree
@@ -301,12 +333,11 @@ nnoremap <leader>n :NERDTree<CR>
 map <leader>gtd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "}}}
 " VimTex ------------------ {{{2
-"
+" LaTex is tex filetype
+let g:tex_flavor = "latex"
 " }}}
 " Emmet-vim --------------------- {{{2
 " Trigget key config
 let g:user_emmet_leader_key=','
 " }}}
 " }}}
-" LaTex is tex filetype
-let g:tex_flavor = "latex"
